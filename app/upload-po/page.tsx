@@ -13,6 +13,7 @@ import { FileUploadZone } from "@/components/molecules/file-upload-zone";
 import { POHeaderDetails } from "@/components/molecules/po-header-details";
 import { POFinancialSummary } from "@/components/molecules/po-financial-summary";
 import { POItemsTable } from "@/components/molecules/po-items-table";
+import { RawDataViewer } from "@/components/molecules/raw-data-viewer";
 
 export default function UploadPOPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -101,6 +102,7 @@ export default function UploadPOPage() {
             <POHeaderDetails poDetails={poDetails} />
             <POFinancialSummary poDetails={poDetails} />
             <POItemsTable poDetails={poDetails} />
+            <RawDataViewer data={poDetails} /> 
           </div>
         )}
       </div>

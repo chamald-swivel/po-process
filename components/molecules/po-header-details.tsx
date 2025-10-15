@@ -1,9 +1,16 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Label } from "@/components/ui/label"
-import type { PODetails } from "@/lib/po-extraction-service"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import type { PODetails } from "@/lib/po-extraction-service";
+import { formatString } from "@/lib/format-utils";
 
 interface POHeaderDetailsProps {
-  poDetails: PODetails
+  poDetails: PODetails;
 }
 
 export function POHeaderDetails({ poDetails }: POHeaderDetailsProps) {
@@ -11,29 +18,41 @@ export function POHeaderDetails({ poDetails }: POHeaderDetailsProps) {
     <Card>
       <CardHeader>
         <CardTitle>Purchase Order Details</CardTitle>
-        <CardDescription>PO Number: {poDetails.poNumber}</CardDescription>
+        <CardDescription>
+          PO Number: {formatString(poDetails.poNumber, "N/A")}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div>
             <Label className="text-muted-foreground">Order Date</Label>
-            <p className="font-medium">{poDetails.orderDate}</p>
+            <p className="font-medium">
+              {formatString(poDetails.orderDate, "N/A")}
+            </p>
           </div>
           <div>
             <Label className="text-muted-foreground">Customer Number</Label>
-            <p className="font-medium">{poDetails.customerNumber}</p>
+            <p className="font-medium">
+              {formatString(poDetails.customerNumber, "N/A")}
+            </p>
           </div>
           <div>
             <Label className="text-muted-foreground">Customer Name</Label>
-            <p className="font-medium">{poDetails.customerName}</p>
+            <p className="font-medium">
+              {formatString(poDetails.customerName, "N/A")}
+            </p>
           </div>
           <div className="md:col-span-2 lg:col-span-3">
             <Label className="text-muted-foreground">Customer Address</Label>
-            <p className="font-medium">{poDetails.customerAddress}</p>
+            <p className="font-medium">
+              {formatString(poDetails.customerAddress, "N/A")}
+            </p>
           </div>
           <div>
             <Label className="text-muted-foreground">Currency</Label>
-            <p className="font-medium">{poDetails.currencyCode}</p>
+            <p className="font-medium">
+              {formatString(poDetails.currencyCode, "USD")}
+            </p>
           </div>
           {poDetails.salesperson && (
             <div>
@@ -62,5 +81,5 @@ export function POHeaderDetails({ poDetails }: POHeaderDetailsProps) {
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

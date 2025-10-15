@@ -30,6 +30,8 @@ export interface PODetails {
 export class POExtractionService {
   private static readonly API_URL =
     "https://swivelace.app.n8n.cloud/webhook/getPOData";
+  // "https://swivelace.app.n8n.cloud/webhook-test/getPOData"; // Test URL
+  //  "https://swivelace.app.n8n.cloud/webhook/getPOData"; // Production URL
 
   /**
    * Upload a PDF file and extract purchase order details
