@@ -63,6 +63,7 @@ export interface PurchaseOrder {
   finalLinesOutput: LineItem[] | null;
   finalSOHeaderOutput: SOHeader | null;
   created_at: string;
+  updated_at: string;
 }
 
 // Service class that handles both mock and real database operations
@@ -97,9 +98,9 @@ export class PurchaseOrderService {
       const { data, error } = await supabase
         .from("FinalPOData")
         .select(`*`)
-        .gte("created_at", today)
-        .lt("created_at", tomorrow)
-        .order("created_at", { ascending: false });
+        .gte("updated_at", today)
+        .lt("updated_at", tomorrow)
+        .order("updated_at", { ascending: false });
       const poData: PurchaseOrder[] =
         data?.map((po) => {
           return {
@@ -108,6 +109,7 @@ export class PurchaseOrderService {
             finalLinesOutput: po.finalLinesOutput,
             finalSOHeaderOutput: po.finalSOHeaderOutput,
             created_at: po.created_at,
+            updated_at: po.updated_at,
           };
         }) || [];
       if (error) {
@@ -192,7 +194,7 @@ export class PurchaseOrderService {
       const { data, error } = await supabase
         .from("FinalPOData")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("updated_at", { ascending: false });
 
       if (error) {
         console.error("[v0] Supabase error:", error);
@@ -329,9 +331,9 @@ export class PurchaseOrderService {
       const { data, error } = await supabase
         .from("FinalPOData")
         .select("*")
-        .gte("created_at", dateStr)
-        .lt("created_at", nextDayStr)
-        .order("created_at", { ascending: false });
+        .gte("updated_at", dateStr)
+        .lt("updated_at", nextDayStr)
+        .order("updated_at", { ascending: false });
 
       if (error) {
         console.error("[v0] Supabase error:", error);
@@ -346,6 +348,7 @@ export class PurchaseOrderService {
             finalLinesOutput: po.finalLinesOutput,
             finalSOHeaderOutput: po.finalSOHeaderOutput,
             created_at: po.created_at,
+            updated_at: po.updated_at,
           };
         }) || [];
 
