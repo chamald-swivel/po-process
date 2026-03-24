@@ -3,9 +3,9 @@ import { createClient } from "@supabase/supabase-js";
 
 // Supabase client
 const getSupabaseClient = () => {
-  const supabaseUrl = "https://dbpxpzolnjewgzgifyno.supabase.co";
+  const supabaseUrl = "https://snregmhjviiklvxkiwpp.supabase.co";
   const supabaseKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRicHhwem9sbmpld2d6Z2lmeW5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNDcwNDEsImV4cCI6MjA4OTkyMzA0MX0.NIIFCPeCeaTHFXSZMr5I24KffMgApixElLoT5TeDQh8";
+    "eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNucmVnbWhqdmlpa2x2eGtpd3BwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgyOTMzNTAsImV4cCI6MjA3Mzg2OTM1MH0.QV2xQI-6MNUXNP9kFleOBUSFONCmki84RaCYLvqxl6I";
 
   return createClient(supabaseUrl, supabaseKey);
 };
@@ -116,7 +116,7 @@ export class PromptRulesService {
   // Update an existing prompt rule
   static async updatePromptRule(
     id: number,
-    prompt: string
+    prompt: string,
   ): Promise<{
     data: PromptRule | null;
     error: { message: string } | null;
