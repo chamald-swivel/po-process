@@ -6,9 +6,9 @@ import { mockPurchaseOrders } from "./mock-purchase-orders";
 
 // Supabase client - only works when environment variables are set
 const getSupabaseClient = () => {
-  const supabaseUrl = "https://snregmhjviiklvxkiwpp.supabase.co";
+  const supabaseUrl = "https://dbpxpzolnjewgzgifyno.supabase.co";
   const supabaseKey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNucmVnbWhqdmlpa2x2eGtpd3BwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgyOTMzNTAsImV4cCI6MjA3Mzg2OTM1MH0.QV2xQI-6MNUXNP9kFleOBUSFONCmki84RaCYLvqxl6I";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRicHhwem9sbmpld2d6Z2lmeW5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNDcwNDEsImV4cCI6MjA4OTkyMzA0MX0.NIIFCPeCeaTHFXSZMr5I24KffMgApixElLoT5TeDQh8";
 
   return createClient(supabaseUrl, supabaseKey);
 };
@@ -147,14 +147,14 @@ export class PurchaseOrderService {
       // Sort by created_at descending (simulating ORDER BY)
       const sortedOrders = todaysOrders.sort(
         (a, b) =>
-          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
       );
 
       console.log(
         "[v0] Service: Fetched",
         sortedOrders.length,
         "mock purchase orders for",
-        today
+        today,
       );
 
       return {
@@ -213,7 +213,7 @@ export class PurchaseOrderService {
           (line: LineItem) =>
             line.json.itemNo === "Ambiguity in identification" ||
             line.json.code === "Ambiguity in identification" ||
-            line.json.itemDescription === "Ambiguity in identification"
+            line.json.itemDescription === "Ambiguity in identification",
         );
 
         // Check for undefined/null values in critical SOHeader fields (excluding totalAmountIncludingTax)
@@ -252,7 +252,7 @@ export class PurchaseOrderService {
           (line) =>
             line.json.itemNo === "Ambiguity in identification" ||
             line.json.code === "Ambiguity in identification" ||
-            line.json.itemDescription === "Ambiguity in identification"
+            line.json.itemDescription === "Ambiguity in identification",
         );
 
         // Check for undefined/null values in critical SOHeader fields (excluding totalAmountIncludingTax)
@@ -309,7 +309,7 @@ export class PurchaseOrderService {
   }
 
   private static async getRealPurchaseOrdersByDate(
-    selectedDate: Date
+    selectedDate: Date,
   ): Promise<{
     data: PurchaseOrder[] | null;
     error: { message: string } | null;
@@ -363,7 +363,7 @@ export class PurchaseOrderService {
   }
 
   private static async getMockPurchaseOrdersByDate(
-    selectedDate: Date
+    selectedDate: Date,
   ): Promise<{
     data: PurchaseOrder[] | null;
     error: { message: string } | null;
@@ -384,14 +384,14 @@ export class PurchaseOrderService {
       // Sort by created_at descending
       const sortedOrders = dateOrders.sort(
         (a, b) =>
-          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
       );
 
       console.log(
         "[v0] Service: Fetched",
         sortedOrders.length,
         "mock purchase orders for",
-        dateStr
+        dateStr,
       );
 
       return {
